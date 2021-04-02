@@ -3,6 +3,7 @@ package com.ruoyi.system.mapper;
 import java.util.List;
 
 import com.ruoyi.system.domain.SysNotice;
+import com.ruoyi.system.domain.dto.SysNoticeDTO;
 
 /**
  * 通知公告表 数据层
@@ -16,7 +17,7 @@ public interface SysNoticeMapper {
      * @param noticeId 公告ID
      * @return 公告信息
      */
-    public SysNotice selectNoticeById(Long noticeId);
+    public SysNoticeDTO selectNoticeById(Long noticeId);
 
     /**
      * 查询公告列表
@@ -32,7 +33,7 @@ public interface SysNoticeMapper {
      * @param notice 公告信息
      * @return 结果
      */
-    public int insertNotice(SysNotice notice);
+    public int insertNotice(SysNoticeDTO notice);
 
     /**
      * 修改公告

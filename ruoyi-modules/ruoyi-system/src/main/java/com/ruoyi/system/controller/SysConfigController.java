@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ruoyi.common.core.utils.PrimaryKeyIdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -83,6 +84,7 @@ public class SysConfigController extends BaseController {
         if (UserConstants.NOT_UNIQUE.equals(configService.checkConfigKeyUnique(config))) {
             return AjaxResult.error("新增参数'" + config.getConfigName() + "'失败，参数键名已存在");
         }
+        config.setConfigId(PrimaryKeyIdUtils.getSysIdWorker().nextId());
         config.setCreateBy(SecurityUtils.getUsername());
         return toAjax(configService.insertConfig(config));
     }

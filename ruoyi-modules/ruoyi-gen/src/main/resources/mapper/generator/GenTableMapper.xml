@@ -76,8 +76,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="selectDbTableList" parameterType="GenTable" resultMap="GenTableResult">
-		select table_name, table_comment, create_time, update_time from information_schema.tables
-		where table_schema = (select database())
+		select table_name, table_comment, create_time, update_time from view_self_table
+		where table_schema = (select current_schema()) and table_catalog  = (select current_catalog)
 		AND table_name NOT LIKE 'qrtz_%' AND table_name NOT LIKE 'gen_%'
 		AND table_name NOT IN (select table_name from gen_table)
 		<if test="tableName != null and tableName != ''">
@@ -95,8 +95,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectDbTableListByNames" resultMap="GenTableResult">
-		select table_name, table_comment, create_time, update_time from information_schema.tables
-		where table_name NOT LIKE 'qrtz_%' and table_name NOT LIKE 'gen_%' and table_schema = (select database())
+		select table_name, table_comment, create_time, update_time from view_self_table
+		where table_name NOT LIKE 'qrtz_%' and table_name NOT LIKE 'gen_%' and table_schema = (select current_schema()) and table_catalog  = (select current_catalog)
 		and table_name in
 	    <foreach collection="array" item="name" open="(" separator="," close=")">
  			#{name}
@@ -104,8 +104,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectTableByName" parameterType="String" resultMap="GenTableResult">
-		select table_name, table_comment, create_time, update_time from information_schema.tables
-		where table_comment <![CDATA[ <> ]]> '' and table_schema = (select database())
+		select table_name, table_comment, create_time, update_time from view_self_table
+		where table_comment <![CDATA[ <> ]]> '' and table_schema = ( select current_schema()) and table_catalog  = (select current_catalog)
 		and table_name = #{tableName}
 	</select>
 	
@@ -163,7 +163,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="genPath != null and genPath != ''">#{genPath},</if>
 			<if test="remark != null and remark != ''">#{remark},</if>
  			<if test="createBy != null and createBy != ''">#{createBy},</if>
-			sysdate()
+			now()
          )
     </insert>
     
@@ -186,7 +186,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="options != null and options != ''">options = #{options},</if>
             <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
             <if test="remark != null">remark = #{remark},</if>
-            update_time = sysdate()
+            update_time = now()
         </set>
         where table_id = #{tableId}
     </update>

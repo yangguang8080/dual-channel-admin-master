@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ruoyi.common.core.utils.PrimaryKeyIdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -78,6 +79,7 @@ public class SysPostController extends BaseController {
         } else if (UserConstants.NOT_UNIQUE.equals(postService.checkPostCodeUnique(post))) {
             return AjaxResult.error("新增岗位'" + post.getPostName() + "'失败，岗位编码已存在");
         }
+        post.setPostId(PrimaryKeyIdUtils.getSysIdWorker().nextId());
         post.setCreateBy(SecurityUtils.getUsername());
         return toAjax(postService.insertPost(post));
     }

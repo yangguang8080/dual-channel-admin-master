@@ -14,6 +14,8 @@ import org.springframework.cloud.client.SpringCloudApplication;
 public class MonitorApplication {
     public static void main(String[] args) {
         SpringApplication.run(MonitorApplication.class, args);
+        System.out.println("============================================================");
         System.out.println("======================监控中心模块启动成功======================");
+        System.out.println("============================================================");
     }
 }

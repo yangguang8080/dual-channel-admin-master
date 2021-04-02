@@ -2,6 +2,7 @@ package com.ruoyi.system.controller;
 
 import java.util.List;
 
+import com.ruoyi.common.core.utils.PrimaryKeyIdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -91,6 +92,7 @@ public class SysMenuController extends BaseController {
                 && !StringUtils.startsWithAny(menu.getPath(), Constants.HTTP, Constants.HTTPS)) {
             return AjaxResult.error("新增菜单'" + menu.getMenuName() + "'失败，地址必须以http(s)://开头");
         }
+        menu.setMenuId(PrimaryKeyIdUtils.getSysIdWorker().nextId());
         menu.setCreateBy(SecurityUtils.getUsername());
         return toAjax(menuService.insertMenu(menu));
     }

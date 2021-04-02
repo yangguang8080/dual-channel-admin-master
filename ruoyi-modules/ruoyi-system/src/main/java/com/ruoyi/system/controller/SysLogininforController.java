@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ruoyi.common.core.utils.PrimaryKeyIdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -75,6 +76,7 @@ public class SysLogininforController extends BaseController {
 
         // 封装对象
         SysLogininfor logininfor = new SysLogininfor();
+        logininfor.setInfoId(PrimaryKeyIdUtils.getSysIdWorker().nextId());
         logininfor.setUserName(username);
         logininfor.setIpaddr(ip);
         logininfor.setMsg(message);

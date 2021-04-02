@@ -1,7 +1,11 @@
 package com.ruoyi.system.service.impl;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import com.ruoyi.common.core.utils.StringUtils;
+import com.ruoyi.system.domain.dto.SysNoticeDTO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +31,13 @@ public class SysNoticeServiceImpl implements ISysNoticeService {
      */
     @Override
     public SysNotice selectNoticeById(Long noticeId) {
-        return noticeMapper.selectNoticeById(noticeId);
+        SysNoticeDTO dto = noticeMapper.selectNoticeById(noticeId);
+        SysNotice notice = new SysNotice();
+        BeanUtils.copyProperties(dto, notice);
+        if (dto.getNoticeContents() != null) {
+            notice.setNoticeContent(new String(dto.getNoticeContents()));
+        }
+        return notice;
     }
 
     /**
@@ -49,7 +59,16 @@ public class SysNoticeServiceImpl implements ISysNoticeService {
      */
     @Override
     public int insertNotice(SysNotice notice) {
-        return noticeMapper.insertNotice(notice);
+        SysNoticeDTO dto = new SysNoticeDTO();
+        BeanUtils.copyProperties(notice, dto);
+        try {
+            if (StringUtils.isNotEmpty(notice.getNoticeContent())) {
+                dto.setNoticeContents(notice.getNoticeContent().getBytes("UTF-8"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return noticeMapper.insertNotice(dto);
     }
 
     /**

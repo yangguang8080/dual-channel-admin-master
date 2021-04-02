@@ -2,6 +2,8 @@ package com.ruoyi.system.controller;
 
 import java.util.List;
 
+import com.ruoyi.common.core.text.IdWorker;
+import com.ruoyi.common.core.utils.PrimaryKeyIdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -60,6 +62,7 @@ public class SysNoticeController extends BaseController {
     @Log(title = "通知公告", businessType = BusinessType.UPDATE)
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysNotice notice) {
+        notice.setNoticeId(PrimaryKeyIdUtils.getSysIdWorker().nextId());
         notice.setCreateBy(SecurityUtils.getUsername());
         return toAjax(noticeService.insertNotice(notice));
     }

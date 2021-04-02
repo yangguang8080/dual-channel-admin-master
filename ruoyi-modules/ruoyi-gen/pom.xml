@@ -55,11 +55,23 @@
         </dependency>
         
         <!-- Mysql Connector -->
-        <dependency>
+  <!--      <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+        </dependency>-->
+        <!-- 引入postgresql connector driver -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <!-- <scope>runtime</scope>-->
         </dependency>
-        
+        <!-- Druid -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
         <!-- RuoYi Common Log -->
         <dependency>
             <groupId>com.ruoyi</groupId>

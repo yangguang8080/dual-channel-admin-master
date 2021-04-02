@@ -15,6 +15,8 @@ import com.ruoyi.common.security.annotation.EnableRyFeignClients;
 public class AuthApplication {
     public static void main(String[] args) {
         SpringApplication.run(AuthApplication.class, args);
+        System.out.println("===============================================================");
         System.out.println("======================认证授权中心模块启动成功======================");
+        System.out.println("===============================================================");
     }
 }

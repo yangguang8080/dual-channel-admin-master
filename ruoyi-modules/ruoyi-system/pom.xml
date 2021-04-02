@@ -47,13 +47,26 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger.fox.version}</version>
         </dependency>
-		
+
         <!-- Mysql Connector -->
+        <!--      <dependency>
+                  <groupId>mysql</groupId>
+                  <artifactId>mysql-connector-java</artifactId>
+              </dependency>-->
+        <!-- 引入postgresql connector driver -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <!-- <scope>runtime</scope>-->
         </dependency>
-        
+
+        <!-- Druid -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
         <!-- RuoYi Common DataSource -->
         <dependency>
             <groupId>com.ruoyi</groupId>

@@ -15,6 +15,8 @@ import com.ruoyi.common.swagger.annotation.EnableCustomSwagger2;
 public class FileApplication {
     public static void main(String[] args) {
         SpringApplication.run(FileApplication.class, args);
+        System.out.println("============================================================");
         System.out.println("======================文件服务模块启动成功======================");
+        System.out.println("============================================================");
     }
 }

@@ -3,6 +3,7 @@ package com.ruoyi.system.controller;
 import java.util.Iterator;
 import java.util.List;
 
+import com.ruoyi.common.core.utils.PrimaryKeyIdUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -104,6 +105,7 @@ public class SysDeptController extends BaseController {
         if (UserConstants.NOT_UNIQUE.equals(deptService.checkDeptNameUnique(dept))) {
             return AjaxResult.error("新增部门'" + dept.getDeptName() + "'失败，部门名称已存在");
         }
+        dept.setDeptId(PrimaryKeyIdUtils.getSysIdWorker().nextId());
         dept.setCreateBy(SecurityUtils.getUsername());
         return toAjax(deptService.insertDept(dept));
     }
