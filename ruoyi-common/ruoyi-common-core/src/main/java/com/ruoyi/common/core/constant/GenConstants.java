@@ -49,7 +49,7 @@ public class GenConstants {
     /**
      * 数据库字符串类型
      */
-    public static final String[] COLUMNTYPE_STR = {"char", "varchar", "nvarchar", "varchar2"};
+    public static final String[] COLUMNTYPE_STR = {"char", "varchar", "nvarchar", "varchar2", "json"};
 
     /**
      * 数据库文本类型
@@ -64,8 +64,12 @@ public class GenConstants {
     /**
      * 数据库数字类型
      */
-    public static final String[] COLUMNTYPE_NUMBER = {"tinyint", "smallint", "mediumint", "int", "number", "integer",
-            "bigint", "float", "double", "decimal"};
+    public static final String[] COLUMNTYPE_NUMBER = {"tinyint", "smallint", "mediumint", "int", "number", "integer", "bigint", "float", "double", "decimal", "int2", "int4", "int8", "float4", "float8", "numeric"};
+
+    /**
+     * 数据库布尔类型
+     */
+    public static final String[] COLUMNTYPE_BOOL = {"bool"};
 
     /**
      * 页面不需要编辑字段
@@ -75,14 +79,12 @@ public class GenConstants {
     /**
      * 页面不需要显示的列表字段
      */
-    public static final String[] COLUMNNAME_NOT_LIST = {"id", "create_by", "create_time", "del_flag", "update_by",
-            "update_time"};
+    public static final String[] COLUMNNAME_NOT_LIST = {"id", "create_by", "create_time", "del_flag", "update_by", "update_time"};
 
     /**
      * 页面不需要查询字段
      */
-    public static final String[] COLUMNNAME_NOT_QUERY = {"id", "create_by", "create_time", "del_flag", "update_by",
-            "update_time", "remark"};
+    public static final String[] COLUMNNAME_NOT_QUERY = {"id", "create_by", "create_time", "del_flag", "update_by", "update_time", "remark"};
 
     /**
      * Entity基类字段
@@ -153,6 +155,11 @@ public class GenConstants {
      * 长整型
      */
     public static final String TYPE_LONG = "Long";
+
+    /**
+     * 布尔类型
+     */
+    public static final String TYPE_BOOLEAN = "Boolean";
 
     /**
      * 浮点型

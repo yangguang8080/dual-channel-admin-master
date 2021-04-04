@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="selectOperLogVo"/>
 		<where>
 			<if test="title != null and title != ''">
-				AND title like concat('%', #{title}, '%')
+				AND title like '%'||#{title}||'%'
 			</if>
 			<if test="businessType != null and businessType != ''">
 				AND business_type = #{businessType}
@@ -51,13 +51,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				AND status = #{status}
 			</if>
 			<if test="operName != null and operName != ''">
-				AND oper_name like concat('%', #{operName}, '%')
+				AND oper_name like '%'||#{operName}||'%'
 			</if>
 			<if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
-				and date_format(oper_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+				AND to_date(oper_time::text,'YYYY-MM-DD') &gt;= to_date(#{params.beginTime},'YYYY-MM-DD')
 			</if>
 			<if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
-				and date_format(oper_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+				AND to_date(oper_time::text,'YYYY-MM-DD') &lt;= to_date(#{params.endTime},'YYYY-MM-DD')
 			</if>
 		</where>
 		order by oper_id desc

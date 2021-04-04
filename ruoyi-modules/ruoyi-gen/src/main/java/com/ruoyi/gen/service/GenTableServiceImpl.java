@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import com.ruoyi.common.core.utils.PrimaryKeyIdUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -151,6 +152,7 @@ public class GenTableServiceImpl implements IGenTableService {
         String operName = SecurityUtils.getUsername();
         try {
             for (GenTable table : tableList) {
+                table.setTableId(PrimaryKeyIdUtils.getSysIdWorker().nextId());
                 String tableName = table.getTableName();
                 GenUtils.initTable(table, operName);
                 int row = genTableMapper.insertGenTable(table);
@@ -158,12 +160,14 @@ public class GenTableServiceImpl implements IGenTableService {
                     // 保存列信息
                     List<GenTableColumn> genTableColumns = genTableColumnMapper.selectDbTableColumnsByName(tableName);
                     for (GenTableColumn column : genTableColumns) {
+                        column.setColumnId(PrimaryKeyIdUtils.getSysIdWorker().nextId());
                         GenUtils.initColumnField(column, table);
                         genTableColumnMapper.insertGenTableColumn(column);
                     }
                 }
             }
         } catch (Exception e) {
+            log.error(e.getMessage(), e);
             throw new CustomException("导入失败：" + e.getMessage());
         }
     }

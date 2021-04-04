@@ -61,16 +61,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="selectGenTableVo"/>
 		<where>
 			<if test="tableName != null and tableName != ''">
-				AND lower(table_name) like lower(concat('%', #{tableName}, '%'))
+				AND lower(table_name) like lower('%'||#{tableName}||'%')
 			</if>
 			<if test="tableComment != null and tableComment != ''">
-				AND lower(table_comment) like lower(concat('%', #{tableComment}, '%'))
+				AND lower(table_comment) like lower('%'||#{tableComment}||'%')
 			</if>
 			<if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
-				AND date_format(create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+				AND to_date(create_time::text,'YYYY-MM-DD') &gt;= to_date(#{params.beginTime},'YYYY-MM-DD')
 			</if>
 			<if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
-				AND date_format(create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+				AND to_date(create_time::text,'YYYY-MM-DD') &lt;= to_date(#{params.endTime},'YYYY-MM-DD')
 			</if>
 		</where>
 	</select>
@@ -81,22 +81,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND table_name NOT LIKE 'qrtz_%' AND table_name NOT LIKE 'gen_%'
 		AND table_name NOT IN (select table_name from gen_table)
 		<if test="tableName != null and tableName != ''">
-			AND lower(table_name) like lower(concat('%', #{tableName}, '%'))
+			AND lower(table_name) like lower('%'||#{tableName}||'%')
 		</if>
 		<if test="tableComment != null and tableComment != ''">
-			AND lower(table_comment) like lower(concat('%', #{tableComment}, '%'))
+			AND lower(table_comment) like lower('%'||#{tableComment}||'%')
 		</if>
 		<if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
-			AND date_format(create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+			AND to_date(create_time::text,'YYYY-MM-DD') &gt;= to_date(#{params.beginTime},'YYYY-MM-DD')
 		</if>
 		<if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
-			AND date_format(create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+			AND to_date(create_time::text,'YYYY-MM-DD') &lt;= to_date(#{params.endTime},'YYYY-MM-DD')
 		</if>
 	</select>
 	
 	<select id="selectDbTableListByNames" resultMap="GenTableResult">
 		select table_name, table_comment, create_time, update_time from view_self_table
-		where table_name NOT LIKE 'qrtz_%' and table_name NOT LIKE 'gen_%' and table_schema = (select current_schema()) and table_catalog  = (select current_catalog)
+		where table_name NOT LIKE 'qrtz_%' and table_name NOT LIKE 'gen_%'
+		and table_schema = (select current_schema()) and table_catalog  = (select current_catalog)
 		and table_name in
 	    <foreach collection="array" item="name" open="(" separator="," close=")">
  			#{name}
@@ -105,7 +106,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="selectTableByName" parameterType="String" resultMap="GenTableResult">
 		select table_name, table_comment, create_time, update_time from view_self_table
-		where table_comment <![CDATA[ <> ]]> '' and table_schema = ( select current_schema()) and table_catalog  = (select current_catalog)
+		where table_comment <![CDATA[ <> ]]> '' and table_schema = ( select current_schema())
+		and table_catalog  = (select current_catalog)
 		and table_name = #{tableName}
 	</select>
 	
@@ -133,8 +135,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by c.sort
 	</select>
 	
-	<insert id="insertGenTable" parameterType="GenTable" useGeneratedKeys="true" keyProperty="tableId">
+	<insert id="insertGenTable" parameterType="GenTable">
         insert into gen_table (
+			<if test="tableId != null and tableId != 0">table_id,</if>
 			<if test="tableName != null">table_name,</if>
 			<if test="tableComment != null and tableComment != ''">table_comment,</if>
 			<if test="className != null and className != ''">class_name,</if>
@@ -150,6 +153,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="createBy != null and createBy != ''">create_by,</if>
 			create_time
          )values(
+			<if test="tableId != null and tableId != ''">#{tableId},</if>
 			<if test="tableName != null">#{tableName},</if>
 			<if test="tableComment != null and tableComment != ''">#{tableComment},</if>
 			<if test="className != null and className != ''">#{className},</if>

@@ -303,7 +303,6 @@ public class ExcelUtil<T> {
             double sheetNo = Math.ceil(list.size() / sheetSize);
             for (int index = 0; index <= sheetNo; index++) {
                 createSheet(sheetNo, index);
-
                 // 产生一行
                 Row row = sheet.createRow(0);
                 int column = 0;

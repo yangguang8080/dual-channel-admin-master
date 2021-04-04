@@ -34,19 +34,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="selectRoleVo"/>
 		where r.del_flag = '0'
 		<if test="roleName != null and roleName != ''">
-			AND r.role_name like concat('%', #{roleName}, '%')
+			AND r.role_name like '%'||#{roleName}||'%'
 		</if>
 		<if test="status != null and status != ''">
 			AND r.status = #{status}
 		</if>
 		<if test="roleKey != null and roleKey != ''">
-			AND r.role_key like concat('%', #{roleKey}, '%')
+			AND r.role_key like '%'||#{roleKey}||'%'
 		</if>
 		<if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
-			and date_format(r.create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+			AND to_date(r.create_time::text,'YYYY-MM-DD') &gt;= to_date(#{params.beginTime},'YYYY-MM-DD')
 		</if>
 		<if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
-			and date_format(r.create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+			AND to_date(r.create_time::text,'YYYY-MM-DD') &lt;= to_date(#{params.endTime},'YYYY-MM-DD')
 		</if>
 		<!-- 数据范围过滤 -->
 		${params.dataScope}

@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				AND dict_type = #{dictType}
 			</if>
 			<if test="dictLabel != null and dictLabel != ''">
-				AND dict_label like concat('%', #{dictLabel}, '%')
+				AND dict_label like '%'||#{dictLabel}||'%'
 			</if>
 			<if test="status != null and status != ''">
 				AND status = #{status}
@@ -108,7 +108,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="createBy != null and createBy != ''">create_by,</if>
  			create_time
  		)values(
-			<if test="dictCode != null and dictCode != ''">dictCode,</if>
+			<if test="dictCode != null and dictCode != ''">#{dictCode},</if>
  		    <if test="dictSort != null">#{dictSort},</if>
  		    <if test="dictLabel != null and dictLabel != ''">#{dictLabel},</if>
  			<if test="dictValue != null and dictValue != ''">#{dictValue},</if>

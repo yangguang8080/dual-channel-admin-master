@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="selectJobLogVo"/>
 		<where>
 			<if test="jobName != null and jobName != ''">
-				AND job_name like concat('%', #{jobName}, '%')
+				AND job_name like '%'||#{jobName}||'%'
 			</if>
 			<if test="jobGroup != null and jobGroup != ''">
 				AND job_group = #{jobGroup}
@@ -33,15 +33,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				AND status = #{status}
 			</if>
 			<if test="invokeTarget != null and invokeTarget != ''">
-				AND invoke_target like concat('%', #{invokeTarget}, '%')
+				AND invoke_target like '%'||#{invokeTarget}||'%'
 			</if>
 			<if test="params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
-				and date_format(create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+				AND to_date(create_time::text,'YYYY-MM-DD') &gt;= to_date(#{params.beginTime},'YYYY-MM-DD')
 			</if>
 			<if test="params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
-				and date_format(create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+				AND to_date(create_time::text,'YYYY-MM-DD') &lt;= to_date(#{params.endTime},'YYYY-MM-DD')
 			</if>
 		</where>
+		order by job_log_id desc
 	</select>
 	
 	<select id="selectJobLogAll" resultMap="SysJobLogResult">

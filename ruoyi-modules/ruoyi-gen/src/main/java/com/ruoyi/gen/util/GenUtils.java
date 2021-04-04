@@ -30,28 +30,32 @@ public class GenUtils {
 
     /**
      * 初始化列属性字段
+     * 数据库字段类型转换成Java数据类型
      */
     public static void initColumnField(GenTableColumn column, GenTable table) {
-        String dataType = getDbType(column.getColumnType());
-        String columnName = column.getColumnName();
         column.setTableId(table.getTableId());
         column.setCreateBy(table.getCreateBy());
+        // 获取数据库字段类型
+        String dataType = getDbType(column.getColumnType());
+        // 获取列名
+        String columnName = column.getColumnName();
         // 设置java字段名
         column.setJavaField(StringUtils.toCamelCase(columnName));
         // 设置默认类型
         column.setJavaType(GenConstants.TYPE_STRING);
-
+        // 数据库字段类型为字符串类型
         if (arraysContains(GenConstants.COLUMNTYPE_STR, dataType) || arraysContains(GenConstants.COLUMNTYPE_TEXT, dataType)) {
             // 字符串长度超过500设置为文本域
             Integer columnLength = getColumnLength(column.getColumnType());
             String htmlType = columnLength >= 500 || arraysContains(GenConstants.COLUMNTYPE_TEXT, dataType) ? GenConstants.HTML_TEXTAREA : GenConstants.HTML_INPUT;
             column.setHtmlType(htmlType);
+            // 数据库字段类型为时间类型
         } else if (arraysContains(GenConstants.COLUMNTYPE_TIME, dataType)) {
             column.setJavaType(GenConstants.TYPE_DATE);
             column.setHtmlType(GenConstants.HTML_DATETIME);
+            // 数据库字段类型为数字类型
         } else if (arraysContains(GenConstants.COLUMNTYPE_NUMBER, dataType)) {
             column.setHtmlType(GenConstants.HTML_INPUT);
-
             // 如果是浮点型 统一用BigDecimal
             String[] str = StringUtils.split(StringUtils.substringBetween(column.getColumnType(), "(", ")"), ",");
             if (str != null && str.length == 2 && Integer.parseInt(str[1]) > 0) {
@@ -65,11 +69,26 @@ public class GenUtils {
             else {
                 column.setJavaType(GenConstants.TYPE_LONG);
             }
+            //针对PostgreSql判断
+            if ("int2".equalsIgnoreCase(dataType) || "int4".equalsIgnoreCase(dataType)) {
+                column.setJavaType(GenConstants.TYPE_INTEGER);
+            }
+            if ("init8".equalsIgnoreCase(dataType)) {
+                column.setJavaType(GenConstants.TYPE_LONG);
+            }
+            if ("float4".equalsIgnoreCase(dataType) || "float8".equalsIgnoreCase(dataType)) {
+                column.setJavaType(GenConstants.TYPE_DOUBLE);
+            }
+            if ("numeric".equalsIgnoreCase(dataType)) {
+                column.setJavaType(GenConstants.TYPE_BIGDECIMAL);
+            }
+            // 数据库字段类型为布尔类型
+        } else if (arraysContains(GenConstants.COLUMNTYPE_BOOL, dataType)) {
+            column.setHtmlType(GenConstants.HTML_INPUT);
+            column.setJavaType(GenConstants.TYPE_BOOLEAN);
         }
-
         // 插入字段（默认所有字段都需要插入）
         column.setIsInsert(GenConstants.REQUIRE);
-
         // 编辑字段
         if (!arraysContains(GenConstants.COLUMNNAME_NOT_EDIT, columnName) && !column.isPk()) {
             column.setIsEdit(GenConstants.REQUIRE);
@@ -82,7 +101,6 @@ public class GenUtils {
         if (!arraysContains(GenConstants.COLUMNNAME_NOT_QUERY, columnName) && !column.isPk()) {
             column.setIsQuery(GenConstants.REQUIRE);
         }
-
         // 查询字段类型
         if (StringUtils.endsWithIgnoreCase(columnName, "name")) {
             column.setQueryType(GenConstants.QUERY_LIKE);

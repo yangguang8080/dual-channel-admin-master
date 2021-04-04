@@ -35,7 +35,7 @@
 		<include refid="selectMenuVo"/>
 		<where>
 			<if test="menuName != null and menuName != ''">
-				AND menu_name like concat('%', #{menuName}, '%')
+				AND menu_name like '%'||#{menuName}||'%'
 			</if>
 			<if test="visible != null and visible != ''">
 				AND visible = #{visible}
@@ -61,7 +61,7 @@
 		left join sys_role ro on ur.role_id = ro.role_id
 		where ur.user_id = #{params.userId}
 		<if test="menuName != null and menuName != ''">
-            AND menu_name like concat('%', #{menuName}, '%')
+            AND menu_name like '%'||#{menuName}||'%'
 		</if>
 		<if test="visible != null and visible != ''">
             AND visible = #{visible}

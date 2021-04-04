@@ -1,12 +1,12 @@
 # Tomcat
 server:
-  port: 8080
+  port: 10002
 
 # Spring
 spring: 
   application:
     # 应用名称
-    name: ruoyi-gateway
+    name: gateway-service
   profiles:
     # 环境配置
     active: dev
@@ -36,7 +36,7 @@ spring:
         ds1:
           nacos:
             server-addr: 127.0.0.1:8848
-            dataId: sentinel-ruoyi-gateway
+            dataId: sentinel
             groupId: DEFAULT_GROUP
             data-type: json
             rule-type: flow

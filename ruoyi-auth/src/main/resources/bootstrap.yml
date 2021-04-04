@@ -1,12 +1,12 @@
 # Tomcat
 server: 
-  port: 9200
+  port: 10003
 
 # Spring
 spring: 
   application:
     # 应用名称
-    name: ruoyi-auth
+    name: auth-service
   profiles:
     # 环境配置
     active: dev

@@ -21,43 +21,41 @@ import ${packageName}.service.I${ClassName}Service;
 
 /**
  * ${functionName}Service业务层处理
- * 
+ *
  * @author ${author}
  * @date ${datetime}
  */
 @Service
-public class ${ClassName}ServiceImpl implements I${ClassName}Service 
-{
+public class ${ClassName}ServiceImpl implements I${ClassName}Service {
+
     @Autowired
     private ${ClassName}Mapper ${className}Mapper;
 
     /**
      * 查询${functionName}
-     * 
+     *
      * @param ${pkColumn.javaField} ${functionName}ID
      * @return ${functionName}
      */
     @Override
-    public ${ClassName} select${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField})
-    {
+    public ${ClassName} select${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField}) {
         return ${className}Mapper.select${ClassName}ById(${pkColumn.javaField});
     }
 
     /**
      * 查询${functionName}列表
-     * 
+     *
      * @param ${className} ${functionName}
      * @return ${functionName}
      */
     @Override
-    public List<${ClassName}> select${ClassName}List(${ClassName} ${className})
-    {
+    public List<${ClassName}> select${ClassName}List(${ClassName} ${className}) {
         return ${className}Mapper.select${ClassName}List(${className});
     }
 
     /**
      * 新增${functionName}
-     * 
+     *
      * @param ${className} ${functionName}
      * @return 结果
      */
@@ -65,8 +63,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
     @Transactional
 #end
     @Override
-    public int insert${ClassName}(${ClassName} ${className})
-    {
+    public int insert${ClassName}(${ClassName} ${className}) {
 #foreach ($column in $columns)
 #if($column.javaField == 'createTime')
         ${className}.setCreateTime(DateUtils.getNowDate());
@@ -83,7 +80,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
 
     /**
      * 修改${functionName}
-     * 
+     *
      * @param ${className} ${functionName}
      * @return 结果
      */
@@ -91,8 +88,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
     @Transactional
 #end
     @Override
-    public int update${ClassName}(${ClassName} ${className})
-    {
+    public int update${ClassName}(${ClassName} ${className}) {
 #foreach ($column in $columns)
 #if($column.javaField == 'updateTime')
         ${className}.setUpdateTime(DateUtils.getNowDate());
@@ -107,7 +103,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
 
     /**
      * 批量删除${functionName}
-     * 
+     *
      * @param ${pkColumn.javaField}s 需要删除的${functionName}ID
      * @return 结果
      */
@@ -115,8 +111,7 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
     @Transactional
 #end
     @Override
-    public int delete${ClassName}ByIds(${pkColumn.javaType}[] ${pkColumn.javaField}s)
-    {
+    public int delete${ClassName}ByIds(${pkColumn.javaType}[] ${pkColumn.javaField}s) {
 #if($table.sub)
         ${className}Mapper.delete${subClassName}By${subTableFkClassName}s(${pkColumn.javaField}s);
 #end
@@ -125,13 +120,12 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
 
     /**
      * 删除${functionName}信息
-     * 
+     *
      * @param ${pkColumn.javaField} ${functionName}ID
      * @return 结果
      */
     @Override
-    public int delete${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField})
-    {
+    public int delete${ClassName}ById(${pkColumn.javaType} ${pkColumn.javaField}) {
 #if($table.sub)
         ${className}Mapper.delete${subClassName}By${subTableFkClassName}(${pkColumn.javaField});
 #end
@@ -141,23 +135,19 @@ public class ${ClassName}ServiceImpl implements I${ClassName}Service
 
     /**
      * 新增${subTable.functionName}信息
-     * 
+     *
      * @param ${className} ${functionName}对象
      */
-    public void insert${subClassName}(${ClassName} ${className})
-    {
+    public void insert${subClassName}(${ClassName} ${className}) {
         List<${subClassName}> ${subclassName}List = ${className}.get${subClassName}List();
         Long ${pkColumn.javaField} = ${className}.get${pkColumn.capJavaField}();
-        if (StringUtils.isNotNull(${subclassName}List))
-        {
+        if (StringUtils.isNotNull(${subclassName}List)) {
             List<${subClassName}> list = new ArrayList<${subClassName}>();
-            for (${subClassName} ${subclassName} : ${subclassName}List)
-            {
+            for (${subClassName} ${subclassName} : ${subclassName}List) {
                 ${subclassName}.set${subTableFkClassName}(${pkColumn.javaField});
                 list.add(${subclassName});
             }
-            if (list.size() > 0)
-            {
+            if (list.size() > 0) {
                 ${className}Mapper.batch${subClassName}(list);
             }
         }

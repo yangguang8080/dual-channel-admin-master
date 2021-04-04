@@ -18,10 +18,9 @@ public class ScheduleConfig {
     public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource) {
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
         factory.setDataSource(dataSource);
-
         // quartz参数
         Properties prop = new Properties();
-        prop.put("org.quartz.scheduler.instanceName", "RuoyiScheduler");
+        prop.put("org.quartz.scheduler.instanceName", "MyScheduler");
         prop.put("org.quartz.scheduler.instanceId", "AUTO");
         // 线程池配置
         prop.put("org.quartz.threadPool.class", "org.quartz.simpl.SimpleThreadPool");
@@ -29,19 +28,19 @@ public class ScheduleConfig {
         prop.put("org.quartz.threadPool.threadPriority", "5");
         // JobStore配置
         prop.put("org.quartz.jobStore.class", "org.quartz.impl.jdbcjobstore.JobStoreTX");
+        //使用postgresql
+        prop.put("org.quartz.jobStore.driverDelegateClass", "org.quartz.impl.jdbcjobstore.PostgreSQLDelegate");
         // 集群配置
         prop.put("org.quartz.jobStore.isClustered", "true");
         prop.put("org.quartz.jobStore.clusterCheckinInterval", "15000");
         prop.put("org.quartz.jobStore.maxMisfiresToHandleAtATime", "1");
         prop.put("org.quartz.jobStore.txIsolationLevelSerializable", "true");
 
-        // sqlserver 启用
-        // prop.put("org.quartz.jobStore.selectWithLockSQL", "SELECT * FROM {0}LOCKS UPDLOCK WHERE LOCK_NAME = ?");
         prop.put("org.quartz.jobStore.misfireThreshold", "12000");
         prop.put("org.quartz.jobStore.tablePrefix", "QRTZ_");
         factory.setQuartzProperties(prop);
 
-        factory.setSchedulerName("RuoyiScheduler");
+        factory.setSchedulerName("MyScheduler");
         // 延时启动
         factory.setStartupDelay(1);
         factory.setApplicationContextSchedulerContextKey("applicationContextKey");

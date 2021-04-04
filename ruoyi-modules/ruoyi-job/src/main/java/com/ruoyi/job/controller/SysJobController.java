@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ruoyi.common.core.utils.PrimaryKeyIdUtils;
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -80,6 +81,7 @@ public class SysJobController extends BaseController {
         if (!CronUtils.isValid(sysJob.getCronExpression())) {
             return AjaxResult.error("cron表达式不正确");
         }
+        sysJob.setJobId(PrimaryKeyIdUtils.getSysIdWorker().nextId());
         sysJob.setCreateBy(SecurityUtils.getUsername());
         return toAjax(jobService.insertJob(sysJob));
     }

@@ -2,6 +2,7 @@ package com.ruoyi.job.util;
 
 import java.util.Date;
 
+import com.ruoyi.common.core.utils.PrimaryKeyIdUtils;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -66,6 +67,7 @@ public abstract class AbstractQuartzJob implements Job {
         threadLocal.remove();
 
         final SysJobLog sysJobLog = new SysJobLog();
+        sysJobLog.setJobLogId(PrimaryKeyIdUtils.getSysIdWorker().nextId());
         sysJobLog.setJobName(sysJob.getJobName());
         sysJobLog.setJobGroup(sysJob.getJobGroup());
         sysJobLog.setInvokeTarget(sysJob.getInvokeTarget());
