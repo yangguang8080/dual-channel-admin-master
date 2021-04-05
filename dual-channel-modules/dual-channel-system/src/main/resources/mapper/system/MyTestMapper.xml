@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luoran.system.mapper.MyTestMapper">
+    
+    <resultMap type="MyTest" id="MyTestResult">
+        <result property="testId"    column="test_id"    />
+        <result property="testCode"    column="test_code"    />
+        <result property="testContent"    column="test_content"    />
+        <result property="testJson"    column="test_json"    />
+        <result property="testDate"    column="test_date"    />
+        <result property="testPrice"    column="test_price"    />
+        <result property="testStatus"    column="test_status"    />
+        <result property="testBool"    column="test_bool"    />
+    </resultMap>
+
+    <sql id="selectMyTestVo">
+        select test_id, test_code, test_content, test_json, test_date, test_price, test_status, test_bool from my_test
+    </sql>
+
+    <select id="selectMyTestList" parameterType="MyTest" resultMap="MyTestResult">
+        <include refid="selectMyTestVo"/>
+        <where>  
+            <if test="testCode != null "> and test_code = #{testCode}</if>
+            <if test="testContent != null  and testContent != ''"> and test_content = #{testContent}</if>
+            <if test="testJson != null  and testJson != ''"> and test_json = #{testJson}</if>
+            <if test="testDate != null "> and test_date = #{testDate}</if>
+            <if test="testPrice != null "> and test_price = #{testPrice}</if>
+            <if test="testStatus != null "> and test_status = #{testStatus}</if>
+            <if test="testBool != null "> and test_bool = #{testBool}</if>
+        </where>
+    </select>
+    
+    <select id="selectMyTestById" parameterType="Long" resultMap="MyTestResult">
+        <include refid="selectMyTestVo"/>
+        where test_id = #{testId}
+    </select>
+        
+    <insert id="insertMyTest" parameterType="MyTest">
+        insert into my_test
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="testId != null">test_id,</if>
+            <if test="testCode != null">test_code,</if>
+            <if test="testContent != null">test_content,</if>
+            <if test="testJson != null">test_json,</if>
+            <if test="testDate != null">test_date,</if>
+            <if test="testPrice != null">test_price,</if>
+            <if test="testStatus != null">test_status,</if>
+            <if test="testBool != null">test_bool,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="testId != null">#{testId},</if>
+            <if test="testCode != null">#{testCode},</if>
+            <if test="testContent != null">#{testContent},</if>
+            <if test="testJson != null">#{testJson},</if>
+            <if test="testDate != null">#{testDate},</if>
+            <if test="testPrice != null">#{testPrice},</if>
+            <if test="testStatus != null">#{testStatus},</if>
+            <if test="testBool != null">#{testBool},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMyTest" parameterType="MyTest">
+        update my_test
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="testCode != null">test_code = #{testCode},</if>
+            <if test="testContent != null">test_content = #{testContent},</if>
+            <if test="testJson != null">test_json = #{testJson},</if>
+            <if test="testDate != null">test_date = #{testDate},</if>
+            <if test="testPrice != null">test_price = #{testPrice},</if>
+            <if test="testStatus != null">test_status = #{testStatus},</if>
+            <if test="testBool != null">test_bool = #{testBool},</if>
+        </trim>
+        where test_id = #{testId}
+    </update>
+
+    <delete id="deleteMyTestById" parameterType="Long">
+        delete from my_test where test_id = #{testId}
+    </delete>
+
+    <delete id="deleteMyTestByIds" parameterType="String">
+        delete from my_test where test_id in 
+        <foreach item="testId" collection="array" open="(" separator="," close=")">
+            #{testId}
+        </foreach>
+    </delete>
+</mapper>
