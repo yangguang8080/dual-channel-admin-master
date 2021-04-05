@@ -12,7 +12,7 @@
  Target Server Version : 100016
  File Encoding         : 65001
 
- Date: 04/04/2021 17:05:38
+ Date: 06/04/2021 01:59:10
 */
 
 
@@ -68,7 +68,6 @@ COMMENT ON TABLE "public"."gen_table" IS '代码生成业务表';
 -- ----------------------------
 -- Records of gen_table
 -- ----------------------------
-INSERT INTO "public"."gen_table" VALUES (1341334380093440, 'my_test', '测试', NULL, NULL, 'MyTest', 'crud', 'com.ruoyi.system', 'system', 'test', '测试', 'ruoyi', '0', '/', '{}', 'admin', '2021-04-04 16:49:59.059239', NULL, '2021-04-04 16:51:10.33554', NULL);
 
 -- ----------------------------
 -- Table structure for gen_table_column
@@ -126,14 +125,6 @@ COMMENT ON TABLE "public"."gen_table_column" IS '代码生成业务表字段';
 -- ----------------------------
 -- Records of gen_table_column
 -- ----------------------------
-INSERT INTO "public"."gen_table_column" VALUES (1341334916964352, 1341334380093440, 'test_id', NULL, 'int8', 'Long', 'testId', '1', '0', NULL, '1', NULL, NULL, NULL, 'EQ', 'input', NULL, 1, 'admin', '2021-04-04 16:49:59.059239', NULL, '2021-04-04 16:51:10.33554');
-INSERT INTO "public"."gen_table_column" VALUES (1341335038599168, 1341334380093440, 'test_code', '编码', 'int4', 'Integer', 'testCode', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', NULL, 2, 'admin', '2021-04-04 16:49:59.059239', NULL, '2021-04-04 16:51:10.33554');
-INSERT INTO "public"."gen_table_column" VALUES (1341335093125120, 1341334380093440, 'test_content', '内容', 'varchar', 'String', 'testContent', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'editor', NULL, 3, 'admin', '2021-04-04 16:49:59.059239', NULL, '2021-04-04 16:51:10.33554');
-INSERT INTO "public"."gen_table_column" VALUES (1341335168622592, 1341334380093440, 'test_json', 'json字段', 'json', 'String', 'testJson', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', NULL, 4, 'admin', '2021-04-04 16:49:59.059239', NULL, '2021-04-04 16:51:10.33554');
-INSERT INTO "public"."gen_table_column" VALUES (1341335231537152, 1341334380093440, 'test_date', '时间', 'date', 'Date', 'testDate', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'datetime', NULL, 5, 'admin', '2021-04-04 16:49:59.059239', NULL, '2021-04-04 16:51:10.33554');
-INSERT INTO "public"."gen_table_column" VALUES (1341335290257408, 1341334380093440, 'test_price', '价格', 'numeric', 'BigDecimal', 'testPrice', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', NULL, 6, 'admin', '2021-04-04 16:49:59.059239', NULL, '2021-04-04 16:51:10.33554');
-INSERT INTO "public"."gen_table_column" VALUES (1341335348977664, 1341334380093440, 'test_status', '状态', 'int2', 'Integer', 'testStatus', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'radio', NULL, 7, 'admin', '2021-04-04 16:49:59.059239', NULL, '2021-04-04 16:51:10.33554');
-INSERT INTO "public"."gen_table_column" VALUES (1341335399309312, 1341334380093440, 'test_bool', '删除', 'bool', 'Boolean', 'testBool', '0', '0', NULL, '1', '1', '1', '1', 'EQ', 'input', NULL, 8, 'admin', '2021-04-04 16:49:59.059239', NULL, '2021-04-04 16:51:10.33554');
 
 -- ----------------------------
 -- Table structure for my_test
@@ -145,7 +136,7 @@ CREATE TABLE "public"."my_test" (
   "test_content" varchar(255) COLLATE "pg_catalog"."default",
   "test_json" json,
   "test_date" date,
-  "test_price" numeric(24,0),
+  "test_price" numeric(24,4),
   "test_status" int2,
   "test_bool" bool
 )
@@ -160,6 +151,7 @@ COMMENT ON COLUMN "public"."my_test"."test_bool" IS '删除';
 -- ----------------------------
 -- Records of my_test
 -- ----------------------------
+INSERT INTO "public"."my_test" VALUES (1351749931638784, 12345, '<p>aaaaw我</p>', NULL, '2021-04-05', 3312.3455, 0, NULL);
 
 -- ----------------------------
 -- Table structure for qrtz_blob_triggers
@@ -258,9 +250,9 @@ CREATE TABLE "public"."qrtz_job_details" (
 -- ----------------------------
 -- Records of qrtz_job_details
 -- ----------------------------
-INSERT INTO "public"."qrtz_job_details" VALUES ('MyScheduler', 'TASK_CLASS_NAME1045945542254592', 'DEFAULT', NULL, 'com.ruoyi.job.util.QuartzDisallowConcurrentExecution', 'f', 't', 'f', 'f', E'\\254\\355\\000\\005sr\\000\\025org.quartz.JobDataMap\\237\\260\\203\\350\\277\\251\\260\\313\\002\\000\\000xr\\000&org.quartz.utils.StringKeyDirtyFlagMap\\202\\010\\350\\303\\373\\305](\\002\\000\\001Z\\000\\023allowsTransientDataxr\\000\\035org.quartz.utils.DirtyFlagMap\\023\\346.\\255(v\\012\\316\\002\\000\\002Z\\000\\005dirtyL\\000\\003mapt\\000\\017Ljava/util/Map;xp\\001sr\\000\\021java.util.HashMap\\005\\007\\332\\301\\303\\026`\\321\\003\\000\\002F\\000\\012loadFactorI\\000\\011thresholdxp?@\\000\\000\\000\\000\\000\\014w\\010\\000\\000\\000\\020\\000\\000\\000\\001t\\000\\017TASK_PROPERTIESsr\\000\\033com.ruoyi.job.domain.SysJob\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\010L\\000\\012concurrentt\\000\\022Ljava/lang/String;L\\000\\016cronExpressionq\\000~\\000\\011L\\000\\014invokeTargetq\\000~\\000\\011L\\000\\010jobGroupq\\000~\\000\\011L\\000\\005jobIdt\\000\\020Ljava/lang/Long;L\\000\\007jobNameq\\000~\\000\\011L\\000\\015misfirePolicyq\\000~\\000\\011L\\000\\006statusq\\000~\\000\\011xr\\000+com.ruoyi.common.core.web.domain.BaseEntity\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\007L\\000\\010createByq\\000~\\000\\011L\\000\\012createTimet\\000\\020Ljava/util/Date;L\\000\\006paramsq\\000~\\000\\003L\\000\\006remarkq\\000~\\000\\011L\\000\\013searchValueq\\000~\\000\\011L\\000\\010updateByq\\000~\\000\\011L\\000\\012updateTimeq\\000~\\000\\014xpt\\000\\005adminsr\\000\\016java.util.Datehj\\201\\001KYt\\031\\003\\000\\000xpw\\010\\000\\000\\001x\\227\\340\\213/xpppppt\\000\\0011t\\000\\0150/5 * * * * ?t\\000AtaskDemo.multipleParams(''hello world'', true, 2000L, 316.50D, 100)t\\000\\007DEFAULTsr\\000\\016java.lang.Long;\\213\\344\\220\\314\\217#\\337\\002\\000\\001J\\000\\005valuexr\\000\\020java.lang.Number\\206\\254\\225\\035\\013\\224\\340\\213\\002\\000\\000xp\\000\\003\\267H,\\200 \\000t\\000\\014\\345\\244\\232\\345\\217\\202\\346\\265\\213\\350\\257\\225t\\000\\0011t\\000\\0011x\\000');
-INSERT INTO "public"."qrtz_job_details" VALUES ('MyScheduler', 'TASK_CLASS_NAME1043452909330432', 'DEFAULT', NULL, 'com.ruoyi.job.util.QuartzDisallowConcurrentExecution', 'f', 't', 'f', 'f', E'\\254\\355\\000\\005sr\\000\\025org.quartz.JobDataMap\\237\\260\\203\\350\\277\\251\\260\\313\\002\\000\\000xr\\000&org.quartz.utils.StringKeyDirtyFlagMap\\202\\010\\350\\303\\373\\305](\\002\\000\\001Z\\000\\023allowsTransientDataxr\\000\\035org.quartz.utils.DirtyFlagMap\\023\\346.\\255(v\\012\\316\\002\\000\\002Z\\000\\005dirtyL\\000\\003mapt\\000\\017Ljava/util/Map;xp\\001sr\\000\\021java.util.HashMap\\005\\007\\332\\301\\303\\026`\\321\\003\\000\\002F\\000\\012loadFactorI\\000\\011thresholdxp?@\\000\\000\\000\\000\\000\\014w\\010\\000\\000\\000\\020\\000\\000\\000\\001t\\000\\017TASK_PROPERTIESsr\\000\\033com.ruoyi.job.domain.SysJob\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\010L\\000\\012concurrentt\\000\\022Ljava/lang/String;L\\000\\016cronExpressionq\\000~\\000\\011L\\000\\014invokeTargetq\\000~\\000\\011L\\000\\010jobGroupq\\000~\\000\\011L\\000\\005jobIdt\\000\\020Ljava/lang/Long;L\\000\\007jobNameq\\000~\\000\\011L\\000\\015misfirePolicyq\\000~\\000\\011L\\000\\006statusq\\000~\\000\\011xr\\000+com.ruoyi.common.core.web.domain.BaseEntity\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\007L\\000\\010createByq\\000~\\000\\011L\\000\\012createTimet\\000\\020Ljava/util/Date;L\\000\\006paramsq\\000~\\000\\003L\\000\\006remarkq\\000~\\000\\011L\\000\\013searchValueq\\000~\\000\\011L\\000\\010updateByq\\000~\\000\\011L\\000\\012updateTimeq\\000~\\000\\014xpt\\000\\005adminsr\\000\\016java.util.Datehj\\201\\001KYt\\031\\003\\000\\000xpw\\010\\000\\000\\001x\\227\\327y\\346xpppppt\\000\\0011t\\000\\0150/5 * * * * ?t\\000\\030taskDemo.withOutParams()t\\000\\007DEFAULTsr\\000\\016java.lang.Long;\\213\\344\\220\\314\\217#\\337\\002\\000\\001J\\000\\005valuexr\\000\\020java.lang.Number\\206\\254\\225\\035\\013\\224\\340\\213\\002\\000\\000xp\\000\\003\\265\\003\\320\\000 \\000t\\000\\014\\346\\227\\240\\345\\217\\202\\346\\265\\213\\350\\257\\225t\\000\\0011t\\000\\0011x\\000');
-INSERT INTO "public"."qrtz_job_details" VALUES ('MyScheduler', 'TASK_CLASS_NAME1045359514099712', 'DEFAULT', NULL, 'com.ruoyi.job.util.QuartzDisallowConcurrentExecution', 'f', 't', 'f', 'f', E'\\254\\355\\000\\005sr\\000\\025org.quartz.JobDataMap\\237\\260\\203\\350\\277\\251\\260\\313\\002\\000\\000xr\\000&org.quartz.utils.StringKeyDirtyFlagMap\\202\\010\\350\\303\\373\\305](\\002\\000\\001Z\\000\\023allowsTransientDataxr\\000\\035org.quartz.utils.DirtyFlagMap\\023\\346.\\255(v\\012\\316\\002\\000\\002Z\\000\\005dirtyL\\000\\003mapt\\000\\017Ljava/util/Map;xp\\001sr\\000\\021java.util.HashMap\\005\\007\\332\\301\\303\\026`\\321\\003\\000\\002F\\000\\012loadFactorI\\000\\011thresholdxp?@\\000\\000\\000\\000\\000\\014w\\010\\000\\000\\000\\020\\000\\000\\000\\001t\\000\\017TASK_PROPERTIESsr\\000\\033com.ruoyi.job.domain.SysJob\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\010L\\000\\012concurrentt\\000\\022Ljava/lang/String;L\\000\\016cronExpressionq\\000~\\000\\011L\\000\\014invokeTargetq\\000~\\000\\011L\\000\\010jobGroupq\\000~\\000\\011L\\000\\005jobIdt\\000\\020Ljava/lang/Long;L\\000\\007jobNameq\\000~\\000\\011L\\000\\015misfirePolicyq\\000~\\000\\011L\\000\\006statusq\\000~\\000\\011xr\\000+com.ruoyi.common.core.web.domain.BaseEntity\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\007L\\000\\010createByq\\000~\\000\\011L\\000\\012createTimet\\000\\020Ljava/util/Date;L\\000\\006paramsq\\000~\\000\\003L\\000\\006remarkq\\000~\\000\\011L\\000\\013searchValueq\\000~\\000\\011L\\000\\010updateByq\\000~\\000\\011L\\000\\012updateTimeq\\000~\\000\\014xpt\\000\\005adminsr\\000\\016java.util.Datehj\\201\\001KYt\\031\\003\\000\\000xpw\\010\\000\\000\\001x\\227\\336ipxpppppt\\000\\0011t\\000\\0150/5 * * * * ?t\\000 taskDemo.withParams(''123456789'')t\\000\\007DEFAULTsr\\000\\016java.lang.Long;\\213\\344\\220\\314\\217#\\337\\002\\000\\001J\\000\\005valuexr\\000\\020java.lang.Number\\206\\254\\225\\035\\013\\224\\340\\213\\002\\000\\000xp\\000\\003\\266\\277\\272\\200 \\000t\\000\\014\\346\\234\\211\\345\\217\\202\\346\\265\\213\\350\\257\\225t\\000\\0011t\\000\\0011x\\000');
+INSERT INTO "public"."qrtz_job_details" VALUES ('MyScheduler', 'TASK_CLASS_NAME1045945542254592', 'DEFAULT', NULL, 'com.luoran.job.util.QuartzDisallowConcurrentExecution', 'f', 't', 'f', 'f', E'\\254\\355\\000\\005sr\\000\\025org.quartz.JobDataMap\\237\\260\\203\\350\\277\\251\\260\\313\\002\\000\\000xr\\000&org.quartz.utils.StringKeyDirtyFlagMap\\202\\010\\350\\303\\373\\305](\\002\\000\\001Z\\000\\023allowsTransientDataxr\\000\\035org.quartz.utils.DirtyFlagMap\\023\\346.\\255(v\\012\\316\\002\\000\\002Z\\000\\005dirtyL\\000\\003mapt\\000\\017Ljava/util/Map;xp\\001sr\\000\\021java.util.HashMap\\005\\007\\332\\301\\303\\026`\\321\\003\\000\\002F\\000\\012loadFactorI\\000\\011thresholdxp?@\\000\\000\\000\\000\\000\\014w\\010\\000\\000\\000\\020\\000\\000\\000\\001t\\000\\017TASK_PROPERTIESsr\\000\\034com.luoran.job.domain.SysJob\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\010L\\000\\012concurrentt\\000\\022Ljava/lang/String;L\\000\\016cronExpressionq\\000~\\000\\011L\\000\\014invokeTargetq\\000~\\000\\011L\\000\\010jobGroupq\\000~\\000\\011L\\000\\005jobIdt\\000\\020Ljava/lang/Long;L\\000\\007jobNameq\\000~\\000\\011L\\000\\015misfirePolicyq\\000~\\000\\011L\\000\\006statusq\\000~\\000\\011xr\\000,com.luoran.common.core.web.domain.BaseEntity\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\007L\\000\\010createByq\\000~\\000\\011L\\000\\012createTimet\\000\\020Ljava/util/Date;L\\000\\006paramsq\\000~\\000\\003L\\000\\006remarkq\\000~\\000\\011L\\000\\013searchValueq\\000~\\000\\011L\\000\\010updateByq\\000~\\000\\011L\\000\\012updateTimeq\\000~\\000\\014xpt\\000\\005adminsr\\000\\016java.util.Datehj\\201\\001KYt\\031\\003\\000\\000xpw\\010\\000\\000\\001x\\227\\340\\213/xpppppt\\000\\0011t\\000\\0150/5 * * * * ?t\\000AtaskDemo.multipleParams(''hello world'', true, 2000L, 316.50D, 100)t\\000\\007DEFAULTsr\\000\\016java.lang.Long;\\213\\344\\220\\314\\217#\\337\\002\\000\\001J\\000\\005valuexr\\000\\020java.lang.Number\\206\\254\\225\\035\\013\\224\\340\\213\\002\\000\\000xp\\000\\003\\267H,\\200 \\000t\\000\\014\\345\\244\\232\\345\\217\\202\\346\\265\\213\\350\\257\\225t\\000\\0011t\\000\\0011x\\000');
+INSERT INTO "public"."qrtz_job_details" VALUES ('MyScheduler', 'TASK_CLASS_NAME1043452909330432', 'DEFAULT', NULL, 'com.luoran.job.util.QuartzDisallowConcurrentExecution', 'f', 't', 'f', 'f', E'\\254\\355\\000\\005sr\\000\\025org.quartz.JobDataMap\\237\\260\\203\\350\\277\\251\\260\\313\\002\\000\\000xr\\000&org.quartz.utils.StringKeyDirtyFlagMap\\202\\010\\350\\303\\373\\305](\\002\\000\\001Z\\000\\023allowsTransientDataxr\\000\\035org.quartz.utils.DirtyFlagMap\\023\\346.\\255(v\\012\\316\\002\\000\\002Z\\000\\005dirtyL\\000\\003mapt\\000\\017Ljava/util/Map;xp\\001sr\\000\\021java.util.HashMap\\005\\007\\332\\301\\303\\026`\\321\\003\\000\\002F\\000\\012loadFactorI\\000\\011thresholdxp?@\\000\\000\\000\\000\\000\\014w\\010\\000\\000\\000\\020\\000\\000\\000\\001t\\000\\017TASK_PROPERTIESsr\\000\\034com.luoran.job.domain.SysJob\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\010L\\000\\012concurrentt\\000\\022Ljava/lang/String;L\\000\\016cronExpressionq\\000~\\000\\011L\\000\\014invokeTargetq\\000~\\000\\011L\\000\\010jobGroupq\\000~\\000\\011L\\000\\005jobIdt\\000\\020Ljava/lang/Long;L\\000\\007jobNameq\\000~\\000\\011L\\000\\015misfirePolicyq\\000~\\000\\011L\\000\\006statusq\\000~\\000\\011xr\\000,com.luoran.common.core.web.domain.BaseEntity\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\007L\\000\\010createByq\\000~\\000\\011L\\000\\012createTimet\\000\\020Ljava/util/Date;L\\000\\006paramsq\\000~\\000\\003L\\000\\006remarkq\\000~\\000\\011L\\000\\013searchValueq\\000~\\000\\011L\\000\\010updateByq\\000~\\000\\011L\\000\\012updateTimeq\\000~\\000\\014xpt\\000\\005adminsr\\000\\016java.util.Datehj\\201\\001KYt\\031\\003\\000\\000xpw\\010\\000\\000\\001x\\227\\327y\\346xpppppt\\000\\0011t\\000\\0150/5 * * * * ?t\\000\\030taskDemo.withOutParams()t\\000\\007DEFAULTsr\\000\\016java.lang.Long;\\213\\344\\220\\314\\217#\\337\\002\\000\\001J\\000\\005valuexr\\000\\020java.lang.Number\\206\\254\\225\\035\\013\\224\\340\\213\\002\\000\\000xp\\000\\003\\265\\003\\320\\000 \\000t\\000\\014\\346\\227\\240\\345\\217\\202\\346\\265\\213\\350\\257\\225t\\000\\0011t\\000\\0011x\\000');
+INSERT INTO "public"."qrtz_job_details" VALUES ('MyScheduler', 'TASK_CLASS_NAME1045359514099712', 'DEFAULT', NULL, 'com.luoran.job.util.QuartzDisallowConcurrentExecution', 'f', 't', 'f', 'f', E'\\254\\355\\000\\005sr\\000\\025org.quartz.JobDataMap\\237\\260\\203\\350\\277\\251\\260\\313\\002\\000\\000xr\\000&org.quartz.utils.StringKeyDirtyFlagMap\\202\\010\\350\\303\\373\\305](\\002\\000\\001Z\\000\\023allowsTransientDataxr\\000\\035org.quartz.utils.DirtyFlagMap\\023\\346.\\255(v\\012\\316\\002\\000\\002Z\\000\\005dirtyL\\000\\003mapt\\000\\017Ljava/util/Map;xp\\001sr\\000\\021java.util.HashMap\\005\\007\\332\\301\\303\\026`\\321\\003\\000\\002F\\000\\012loadFactorI\\000\\011thresholdxp?@\\000\\000\\000\\000\\000\\014w\\010\\000\\000\\000\\020\\000\\000\\000\\001t\\000\\017TASK_PROPERTIESsr\\000\\034com.luoran.job.domain.SysJob\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\010L\\000\\012concurrentt\\000\\022Ljava/lang/String;L\\000\\016cronExpressionq\\000~\\000\\011L\\000\\014invokeTargetq\\000~\\000\\011L\\000\\010jobGroupq\\000~\\000\\011L\\000\\005jobIdt\\000\\020Ljava/lang/Long;L\\000\\007jobNameq\\000~\\000\\011L\\000\\015misfirePolicyq\\000~\\000\\011L\\000\\006statusq\\000~\\000\\011xr\\000,com.luoran.common.core.web.domain.BaseEntity\\000\\000\\000\\000\\000\\000\\000\\001\\002\\000\\007L\\000\\010createByq\\000~\\000\\011L\\000\\012createTimet\\000\\020Ljava/util/Date;L\\000\\006paramsq\\000~\\000\\003L\\000\\006remarkq\\000~\\000\\011L\\000\\013searchValueq\\000~\\000\\011L\\000\\010updateByq\\000~\\000\\011L\\000\\012updateTimeq\\000~\\000\\014xpt\\000\\005adminsr\\000\\016java.util.Datehj\\201\\001KYt\\031\\003\\000\\000xpw\\010\\000\\000\\001x\\227\\336ipxpppppt\\000\\0011t\\000\\0150/5 * * * * ?t\\000 taskDemo.withParams(''123456789'')t\\000\\007DEFAULTsr\\000\\016java.lang.Long;\\213\\344\\220\\314\\217#\\337\\002\\000\\001J\\000\\005valuexr\\000\\020java.lang.Number\\206\\254\\225\\035\\013\\224\\340\\213\\002\\000\\000xp\\000\\003\\266\\277\\272\\200 \\000t\\000\\014\\346\\234\\211\\345\\217\\202\\346\\265\\213\\350\\257\\225t\\000\\0011t\\000\\0011x\\000');
 
 -- ----------------------------
 -- Table structure for qrtz_locks
@@ -307,7 +299,7 @@ CREATE TABLE "public"."qrtz_scheduler_state" (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO "public"."qrtz_scheduler_state" VALUES ('MyScheduler', 'ghl1617516463585', 1617526861753, 15000);
+INSERT INTO "public"."qrtz_scheduler_state" VALUES ('MyScheduler', 'ghl1617643145834', 1617645548045, 15000);
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -380,9 +372,9 @@ CREATE TABLE "public"."qrtz_triggers" (
 -- ----------------------------
 -- Records of qrtz_triggers
 -- ----------------------------
-INSERT INTO "public"."qrtz_triggers" VALUES ('MyScheduler', 'TASK_CLASS_NAME1045945542254592', 'DEFAULT', 'TASK_CLASS_NAME1045945542254592', 'DEFAULT', NULL, 1617516465000, -1, 5, 'PAUSED', 'CRON', 1617516465000, 0, NULL, -1, E'\\\\x');
-INSERT INTO "public"."qrtz_triggers" VALUES ('MyScheduler', 'TASK_CLASS_NAME1043452909330432', 'DEFAULT', 'TASK_CLASS_NAME1043452909330432', 'DEFAULT', NULL, 1617516465000, -1, 5, 'PAUSED', 'CRON', 1617516465000, 0, NULL, -1, E'\\\\x');
-INSERT INTO "public"."qrtz_triggers" VALUES ('MyScheduler', 'TASK_CLASS_NAME1045359514099712', 'DEFAULT', 'TASK_CLASS_NAME1045359514099712', 'DEFAULT', NULL, 1617516465000, -1, 5, 'PAUSED', 'CRON', 1617516465000, 0, NULL, -1, E'\\\\x');
+INSERT INTO "public"."qrtz_triggers" VALUES ('MyScheduler', 'TASK_CLASS_NAME1045945542254592', 'DEFAULT', 'TASK_CLASS_NAME1045945542254592', 'DEFAULT', NULL, 1617643150000, -1, 5, 'PAUSED', 'CRON', 1617643147000, 0, NULL, -1, E'\\\\x');
+INSERT INTO "public"."qrtz_triggers" VALUES ('MyScheduler', 'TASK_CLASS_NAME1043452909330432', 'DEFAULT', 'TASK_CLASS_NAME1043452909330432', 'DEFAULT', NULL, 1617643150000, -1, 5, 'PAUSED', 'CRON', 1617643147000, 0, NULL, -1, E'\\\\x');
+INSERT INTO "public"."qrtz_triggers" VALUES ('MyScheduler', 'TASK_CLASS_NAME1045359514099712', 'DEFAULT', 'TASK_CLASS_NAME1045359514099712', 'DEFAULT', NULL, 1617643150000, -1, 5, 'PAUSED', 'CRON', 1617643147000, 0, NULL, -1, E'\\\\x');
 
 -- ----------------------------
 -- Table structure for sys_config
@@ -681,15 +673,6 @@ COMMENT ON TABLE "public"."sys_logininfor" IS '系统访问记录';
 -- ----------------------------
 -- Records of sys_logininfor
 -- ----------------------------
-INSERT INTO "public"."sys_logininfor" VALUES (1013297172193280, 'admin', '192.168.4.102', '0', '退出成功', '2021-04-03 19:06:34.563204');
-INSERT INTO "public"."sys_logininfor" VALUES (1014259743989760, 'admin', '192.168.4.102', '0', '登录成功', '2021-04-03 19:10:24.05813');
-INSERT INTO "public"."sys_logininfor" VALUES (1031414170525696, 'admin', '100.70.7.20', '0', '退出成功', '2021-04-03 20:18:34.025163');
-INSERT INTO "public"."sys_logininfor" VALUES (1031445141266432, 'admin', '100.70.7.20', '0', '登录成功', '2021-04-03 20:18:41.409571');
-INSERT INTO "public"."sys_logininfor" VALUES (1034330251993088, 'admin', '100.70.7.20', '0', '登录成功', '2021-04-03 20:30:09.280085');
-INSERT INTO "public"."sys_logininfor" VALUES (1034525614284800, 'admin', '100.70.7.20', '0', '登录成功', '2021-04-03 20:30:55.858988');
-INSERT INTO "public"."sys_logininfor" VALUES (1100649055920128, 'admin', '100.71.0.12', '0', '退出成功', '2021-04-04 00:53:35.189952');
-INSERT INTO "public"."sys_logininfor" VALUES (1100672766320640, 'admin', '100.71.0.12', '0', '登录成功', '2021-04-04 00:53:40.83908');
-INSERT INTO "public"."sys_logininfor" VALUES (1292451499220992, 'admin', '192.168.4.102', '0', '登录成功', '2021-04-04 13:35:44.458748');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -752,7 +735,6 @@ INSERT INTO "public"."sys_menu" VALUES (106, '参数设置', 1, 7, 'config', 'sy
 INSERT INTO "public"."sys_menu" VALUES (107, '通知公告', 1, 9, 'notice', 'system/notice/index', 1, 0, 'C', '0', '0', 'system:notice:list', 'message', 'admin', '2021-04-01 00:30:19', '', NULL, '通知公告菜单');
 INSERT INTO "public"."sys_menu" VALUES (108, '日志管理', 1, 10, 'log', '', 1, 0, 'M', '0', '0', '', 'log', 'admin', '2021-04-01 00:30:19', '', NULL, '日志管理菜单');
 INSERT INTO "public"."sys_menu" VALUES (109, '在线用户', 2, 1, 'online', 'monitor/online/index', 1, 0, 'C', '0', '0', 'monitor:online:list', 'online', 'admin', '2021-04-01 00:30:19', '', NULL, '在线用户菜单');
-INSERT INTO "public"."sys_menu" VALUES (110, '定时任务', 2, 2, 'job', 'monitor/job/index', 1, 0, 'C', '0', '0', 'monitor:job:list', 'job', 'admin', '2021-04-01 00:30:19', '', NULL, '定时任务菜单');
 INSERT INTO "public"."sys_menu" VALUES (111, 'Sentinel控制台', 2, 3, 'http://localhost:8718', '', 1, 0, 'C', '0', '0', 'monitor:sentinel:list', 'sentinel', 'admin', '2021-04-01 00:30:19', '', NULL, '流量控制菜单');
 INSERT INTO "public"."sys_menu" VALUES (112, 'Nacos控制台', 2, 4, 'http://localhost:8848/nacos', '', 1, 0, 'C', '0', '0', 'monitor:nacos:list', 'nacos', 'admin', '2021-04-01 00:30:19', '', NULL, '服务治理菜单');
 INSERT INTO "public"."sys_menu" VALUES (113, 'Admin控制台', 2, 5, 'http://localhost:9100/login', '', 1, 0, 'C', '0', '0', 'monitor:server:list', 'server', 'admin', '2021-04-01 00:30:19', '', NULL, '服务监控菜单');
@@ -792,6 +774,7 @@ INSERT INTO "public"."sys_menu" VALUES (1029, '字典删除', 105, 4, '#', '', 1
 INSERT INTO "public"."sys_menu" VALUES (1030, '字典导出', 105, 5, '#', '', 1, 0, 'F', '0', '0', 'system:dict:export', '#', 'admin', '2021-04-01 00:30:19', '', NULL, '');
 INSERT INTO "public"."sys_menu" VALUES (1031, '参数查询', 106, 1, '#', '', 1, 0, 'F', '0', '0', 'system:config:query', '#', 'admin', '2021-04-01 00:30:19', '', NULL, '');
 INSERT INTO "public"."sys_menu" VALUES (1032, '参数新增', 106, 2, '#', '', 1, 0, 'F', '0', '0', 'system:config:add', '#', 'admin', '2021-04-01 00:30:19', '', NULL, '');
+INSERT INTO "public"."sys_menu" VALUES (110, '定时任务', 2, 2, 'job', 'monitor/job/index', 1, 0, 'C', '0', '0', 'monitor:job:list', 'job', 'admin', '2021-04-01 00:30:19', 'admin', '2021-04-06 01:51:07.392764', '定时任务菜单');
 INSERT INTO "public"."sys_menu" VALUES (1033, '参数修改', 106, 3, '#', '', 1, 0, 'F', '0', '0', 'system:config:edit', '#', 'admin', '2021-04-01 00:30:19', '', NULL, '');
 INSERT INTO "public"."sys_menu" VALUES (1034, '参数删除', 106, 4, '#', '', 1, 0, 'F', '0', '0', 'system:config:remove', '#', 'admin', '2021-04-01 00:30:19', '', NULL, '');
 INSERT INTO "public"."sys_menu" VALUES (1035, '参数导出', 106, 5, '#', '', 1, 0, 'F', '0', '0', 'system:config:export', '#', 'admin', '2021-04-01 00:30:19', '', NULL, '');
@@ -821,7 +804,8 @@ INSERT INTO "public"."sys_menu" VALUES (1063, '导入代码', 115, 2, '#', '', 1
 INSERT INTO "public"."sys_menu" VALUES (1064, '预览代码', 115, 4, '#', '', 1, 0, 'F', '0', '0', 'tool:gen:preview', '#', 'admin', '2021-04-01 00:30:19', '', NULL, '');
 INSERT INTO "public"."sys_menu" VALUES (1065, '生成代码', 115, 5, '#', '', 1, 0, 'F', '0', '0', 'tool:gen:code', '#', 'admin', '2021-04-01 00:30:19', '', NULL, '');
 INSERT INTO "public"."sys_menu" VALUES (1009294724046848, '测试', 0, 0, 'https://www.baidu.com', NULL, 0, 0, 'M', '0', '0', '', 'button', 'admin', '2021-04-03 18:50:40.325049', 'admin', '2021-04-03 19:47:44.984656', NULL);
-INSERT INTO "public"."sys_menu" VALUES (116, '系统接口', 3, 3, 'http://localhost:10002/swagger-ui.html', '', 1, 0, 'C', '0', '0', 'tool:swagger:list', 'swagger', 'admin', '2021-04-01 00:30:19', 'admin', '2021-04-04 13:39:30.859221', '系统接口菜单');
+INSERT INTO "public"."sys_menu" VALUES (1349894975528960, 'ceshi', 1, 0, 'test', 'system/test/index', 1, 0, 'C', '0', '0', 'system:test:list', 'bug', 'admin', '2021-04-04 17:24:00.065893', '', NULL, '');
+INSERT INTO "public"."sys_menu" VALUES (116, '系统接口', 3, 3, 'http://localhost:10012/swagger-ui.html', '', 1, 0, 'C', '0', '0', 'tool:swagger:list', 'swagger', 'admin', '2021-04-01 00:30:19', 'admin', '2021-04-04 13:39:30.859221', '系统接口菜单');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -855,21 +839,7 @@ COMMENT ON TABLE "public"."sys_notice" IS '通知公告表';
 -- ----------------------------
 -- Records of sys_notice
 -- ----------------------------
-INSERT INTO "public"."sys_notice" VALUES (260883620044800, '热特瑞特儿童', '2', E'<p>\\345\\245\\271\\345\\245\\271\\345\\245\\2712312313</p>', '0', 'admin', '2021-04-01 17:16:39.511718', 'admin', '2021-04-02 00:20:27.916939', NULL);
-INSERT INTO "public"."sys_notice" VALUES (367597178593280, '34234', '2', E'<p>\\347\\254\\254\\344\\270\\211\\346\\226\\271\\347\\232\\204</p>', '0', 'admin', '2021-04-02 00:20:42.016637', NULL, NULL, NULL);
-INSERT INTO "public"."sys_notice" VALUES (1, '2', '2', NULL, '0', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO "public"."sys_notice" VALUES (2, '2', '2', NULL, '0', '2', '2021-04-02 00:27:48', '2', '2021-04-02 00:27:52', '2');
-INSERT INTO "public"."sys_notice" VALUES (3, '3', '2', NULL, '0', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO "public"."sys_notice" VALUES (4, '4', '2', NULL, '0', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO "public"."sys_notice" VALUES (5, '5', '2', NULL, '0', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO "public"."sys_notice" VALUES (8, '8', '2', NULL, '0', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO "public"."sys_notice" VALUES (9, '9', '2', NULL, '0', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO "public"."sys_notice" VALUES (10, '1032', '1', E'<p>\\344\\270\\216i</p>', '0', NULL, NULL, 'admin', '2021-04-02 00:54:39.363179', NULL);
-INSERT INTO "public"."sys_notice" VALUES (376173095821312, '2222', '2', E'<p><br></p>', '0', 'admin', '2021-04-02 00:54:46.67504', NULL, NULL, NULL);
-INSERT INTO "public"."sys_notice" VALUES (969659146838016, '伟大的', '1', E'<p>\\345\\276\\256\\350\\275\\257\\345\\276\\256\\350\\275\\257324234</p>', '0', 'admin', '2021-04-03 16:13:10.397071', NULL, NULL, NULL);
-INSERT INTO "public"."sys_notice" VALUES (970279736057856, '123', '2', E'<p>2323\\345\\250\\203\\345\\250\\203\\344\\272\\262\\347\\232\\204\\345\\222\\214\\346\\215\\242\\345\\217\\245\\350\\257\\235</p>', '0', 'admin', '2021-04-03 16:15:38.334125', 'admin', '2021-04-03 16:17:33.239397', NULL);
-INSERT INTO "public"."sys_notice" VALUES (6, '6', '2', E'<p>\\345\\217\\221\\345\\223\\210\\345\\256\\236\\344\\276\\213\\345\\214\\226\\346\\227\\266\\347\\251\\272\\350\\243\\202\\347\\274\\235\\345\\222\\214</p>', '0', NULL, NULL, 'admin', '2021-04-03 20:23:21.664744', NULL);
-INSERT INTO "public"."sys_notice" VALUES (7, '77', '2', E'<p>\\345\\230\\200\\345\\222\\225\\345\\230\\200\\345\\222\\225</p>', '0', NULL, NULL, 'admin', '2021-04-03 20:23:30.010612', NULL);
+INSERT INTO "public"."sys_notice" VALUES (1839175582097408, '测试', '1', E'<p>\\346\\265\\213\\350\\257\\225</p>', '0', 'admin', '2021-04-06 01:48:13.651893', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_oper_log
@@ -915,6 +885,7 @@ COMMENT ON TABLE "public"."sys_oper_log" IS '操作日志记录';
 -- ----------------------------
 -- Records of sys_oper_log
 -- ----------------------------
+INSERT INTO "public"."sys_oper_log" VALUES (1840105912279040, '操作日志', 9, 'com.luoran.system.controller.SysOperlogController.clean()', 'DELETE', 1, 'admin', NULL, '/operlog/clean', '127.0.0.1', NULL, NULL, '{"msg":"操作成功","code":200}', 0, NULL, '2021-04-06 01:51:55.44244');
 
 -- ----------------------------
 -- Table structure for sys_post
