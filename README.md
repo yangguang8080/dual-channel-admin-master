@@ -4,9 +4,13 @@
 详见 https://gitee.com/y_project/RuoYi-Cloud
 
 
+
+
 * 采用前后端分离微服务的开发模式
 
 * 前端采用Vue、Element UI。
+
+前端地址 https://gitee.com/hailongg/dual-channel-client
 
 * 后端采用Spring Boot、Spring Cloud & Alibaba。
 
@@ -19,6 +23,7 @@
 ## 开发文档参考若依微服务
 
 文档地址：http://doc.ruoyi.vip/ruoyi-cloud/
+
 
 
 ## 开发准备
