@@ -20,6 +20,31 @@
 
 文档地址：http://doc.ruoyi.vip/ruoyi-cloud/
 
+
+## 开发准备
+
+* 开发使用的数据库,本地安装MySQL5.7和PostgreSQL11,并执行项目中sql脚本
+
+
+* 本地启动Redis.默认端口6379.无密码
+
+
+* 本地启动Nacos.默认端口8848.nacos作为配置中心和服务注册中心.
+    0. 需下载Nacos1.4.1,下载地址:https://github.com/alibaba/nacos/releases/download/1.4.1/nacos-server-1.4.1.zip
+    1. 因为此资源在github上,建议使用迅雷下载
+    2. 下载解压后找到conf/application.properties文件,修改此文件.
+        增加支持mysql数据源配置(目前只支持mysql).复制下面的代码块即可.
+        ```
+        spring.datasource.platform=mysql
+
+        db.num=1
+        db.url.0=jdbc:mysql://localhost:3306/dual-channel-config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+        db.user=root
+        db.password=root
+        ```
+
+
+
 ## 内置功能
 
 1.  用户管理：用户是系统操作者，该功能主要完成系统用户配置。
